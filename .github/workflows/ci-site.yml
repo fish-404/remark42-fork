@@ -1,12 +1,6 @@
 name: site
 
 on:
-  push:
-    branches:
-    tags:
-    paths:
-      - ".github/workflows/ci-site.yml"
-      - "site/**"
   pull_request:
     paths:
       - ".github/workflows/ci-site.yml"

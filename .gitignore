@@ -17,7 +17,7 @@ debug.test
 remark42
 /bin/
 /backend/var/
-/backend/app/var/
+/var/
 /backend/web/
 /backend/*.html.tmpl
 compose-private-backend.yml
