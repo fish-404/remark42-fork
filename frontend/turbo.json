@@ -1,0 +1,25 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/master",
+  "pipeline": {
+    "start": {},
+    "dev": {},
+    "build": {
+      "outputs": ["public/**"]
+    },
+    "test": {
+      "inputs": ["**/*.tsx", "**/*.ts"]
+    },
+    "lint": {
+      "inputs": ["**/*.tsx", "**/*.ts"]
+    },
+    "stylelint": {
+      "inputs": ["**/*.css"]
+    },
+    "type-check": {
+      "inputs": ["**/*.tsx", "**/*.ts"]
+    },
+    "format": {},
+    "lint-staged": {}
+  }
+}
