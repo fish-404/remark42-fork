@@ -54,7 +54,7 @@ export const createFetcher = (site: string, baseUrl: string): Client => {
 		// An HTTP header cannot be empty.
 		// Although some webservers allow this (nginx, Apache), others answer 400 Bad Request (lighttpd).
 		const xsrfToken = getCookie(XSRF_COOKIE)
-		if (xsrfToken !== undefined) {
+		if (typeof xsrfToken === 'string') {
 			headers.set(XSRF_HEADER, xsrfToken)
 		}
 

@@ -7,7 +7,7 @@ export function mockEndpoint(
 	url: string,
 	params: {
 		method?: 'get' | 'put' | 'post' | 'delete'
-		body?: string | Record<string, unknown> | unknown[]
+		body?: number | string | null | Record<string, unknown> | unknown[]
 		status?: number
 		headers?: Record<string, string | string[]>
 	} = {}

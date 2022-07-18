@@ -17,18 +17,17 @@
   "author": "Paul Mineev",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc -w -p tsconfig.dev.json",
-    "build": "tsc",
-    "prebuild": "rm -rf dist",
+    "dev": "tsc -w --incremental",
+    "build": "rm -rf dist && tsc",
     "prepublish": "./prepublish.sh",
     "postpublish": "./postpublish.sh",
     "test": "jest",
     "coverage": "jest --coverage",
-    "lint": "eslint src --ext=.ts,.js",
+    "lint": "eslint --ext=.ts,.js,.cjs ./",
     "type-check": "tsc --noEmit",
     "format": "prettier --write '**/*.{ts,js,json}'",
     "lint-staged:format": "prettier --write",
-    "lint-staged:lint": "eslint --fix"
+    "lint-staged:lint": "eslint --ext=.ts,.js,.cjs --fix"
   },
   "devDependencies": {
     "@swc/core": "^1.2.215",
