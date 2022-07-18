@@ -1,23 +1,16 @@
-import type { Config } from "jest";
+import type { Config } from 'jest'
 
 const config: Config = {
-	testEnvironment: "jsdom",
+	testEnvironment: 'jsdom',
 	transform: {
-		"^.+\\.ts$": [
-			"@swc/jest",
-			{
-				jsc: {
-					parser: {
-						syntax: "typescript",
-						decorators: false,
-					},
-					target: "es2021",
-				},
-			},
-		],
+		'^.+\\.ts$': '@swc/jest',
 	},
-	moduleDirectories: ["node_modules", "src"],
-	collectCoverageFrom: ["src/**/*.ts"],
-};
+	collectCoverageFrom: ['src/**/*.ts'],
+	extensionsToTreatAsEsm: ['.ts', '.tsx'],
+	moduleNameMapper: {
+		'^@test/(.*)$': '<rootDir>/test/$1',
+	},
+	setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+}
 
-export default config;
+export default config

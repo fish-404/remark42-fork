@@ -1,3 +1,3 @@
 module.exports = {
-	"./**/*.ts": ["pnpm type-check", "pnpm format"],
-};
+	'./**/*.{ts,js,cjs}': ['pnpm lint-staged:format', 'pnpm lint-staged:lint'],
+}

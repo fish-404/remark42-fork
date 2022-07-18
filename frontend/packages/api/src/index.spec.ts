@@ -1,7 +1,7 @@
-import { client } from "index";
+import { createClient } from './index'
 
-describe("module", () => {
-	it("should export client", () => {
-		expect(client).toBeDefined();
-	});
-});
+describe('module', () => {
+	it('should export client', () => {
+		expect(createClient).toBeDefined()
+	})
+})
