@@ -1,12 +1,12 @@
 <script lang="ts">
 	import User from '../components/user.svelte'
-	import { publiApi } from '../lib/api'
-
-	let user = publiApi.getUser()
+	import { user, isLoading } from '../stores/user'
 </script>
 
-{#await user}
-	<div>Loading...</div>
-{:then $user}
-	<User {...$user} />
-{/await}
+<div>
+	{#if $isLoading}
+		<div>Loading...</div>
+	{:else if $user}
+		<User {...$user} />
+	{/if}
+</div>

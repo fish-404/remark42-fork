@@ -1,14 +1,34 @@
 <script lang="ts">
-  export let id: string;
-  export let name: string;
-  export let picture: string;
-  export let verified = false;
-  export let paid_sub = false;
+	import Avatar from './ui/avatar.svelte'
+
+	import Button from './ui/button.svelte'
+	import Icon from './ui/icon.svelte'
+
+	export let id: string
+	export let name: string
+	export let picture: string
+	export let verified = false
+	export let paid_sub = false
 </script>
 
-<article data-id={id}>
-  <img src={picture} alt={name} />
-  {name}
-  {#if verified}<span class="verified">(verified)</span>{/if}
-  {#if paid_sub}<span class="paid">(paid)</span>{/if}
+<article class="root" data-id={id}>
+	<Avatar src={picture} username={name} />
+	<span>{name}</span>
+	{#if verified}<Icon name="verified" />{/if}
+	{#if paid_sub}<Icon name="paid" />{/if}
+	<Button kind="seamless">
+		<Icon name="bell" />
+	</Button>
+	<Button kind="seamless">
+		<Icon name="exit" />
+	</Button>
 </article>
+
+<style>
+	.root {
+		display: flex;
+	}
+	.root > :global(* + *) {
+		margin-left: 5px;
+	}
+</style>

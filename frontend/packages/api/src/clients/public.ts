@@ -1,12 +1,8 @@
-import { ClientParams, Config, User } from '../typings'
+import type { ClientParams, Comment, Config, User } from '../typings'
 import { createFetcher } from '../lib/fetcher'
 import { API_BASE } from '../consts'
 
-type Sort = 'asc' | 'desc'
-type Comment = {
-	id: string
-	body: string
-}
+type Sort = '-active' | '+active'
 type CommentsTree = Comment[]
 
 type CommentPayload = {
@@ -16,7 +12,7 @@ type CommentPayload = {
 }
 
 export type GetUserCommentsParams = {
-	userId: string
+	url: string
 	sort?: Sort
 	limit?: number
 	skip?: number
@@ -26,14 +22,14 @@ export type Vote = -1 | 1
 export function createPublicClient({ siteId: site, baseUrl }: ClientParams) {
 	const fetcher = createFetcher(site, `${baseUrl}${API_BASE}`)
 
-	function getComments(params: GetUserCommentsParams): Promise<Comment[]>
 	function getComments(url: string): Promise<CommentsTree>
-	function getComments(params: GetUserCommentsParams | string): Promise<Comment[] | CommentsTree> {
+	function getComments(params: GetUserCommentsParams): Promise<Comment[]>
+	function getComments(params: string | GetUserCommentsParams): Promise<Comment[] | CommentsTree> {
 		if (typeof params === 'string') {
-			return fetcher.get<CommentsTree>('/find', { url: params })
+			return fetcher.get('/comments', { url: params })
 		}
 
-		return fetcher.get('/comments', params)
+		return fetcher.get<CommentsTree>('/find', { ...params, format: 'tree' })
 	}
 
 	return {
@@ -75,7 +71,7 @@ export function createPublicClient({ siteId: site, baseUrl }: ClientParams) {
 		 * Remove comment on a page
 		 */
 		removeComment(url: string, id: string): Promise<void> {
-			return fetcher.delete(`/comment/${id}`, { url })
+			return fetcher.put(`/comment/${id}`, { url }, { delete: true })
 		},
 
 		/**

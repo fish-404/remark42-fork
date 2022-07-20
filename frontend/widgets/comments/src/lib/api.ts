@@ -1,9 +1,8 @@
-import type { Client } from '@remark42/api/dist/clients/index'
+import { createAuthClient } from '@remark42/api/dist/clients/auth'
 import { createPublicClient } from '@remark42/api/dist/clients/public'
 
-const siteId = 'remark42'
-const baseUrl = 'https://demo.remark42.com'
+const siteId = 'remark'
+const baseUrl = ''
 
-export let authApi = createPublicClient({ siteId, baseUrl })
-export let publiApi: Client['public']
-export let adminApi: Client['admin']
+export let publicApi = createPublicClient({ siteId, baseUrl })
+export let authApi = createAuthClient({ siteId, baseUrl })
