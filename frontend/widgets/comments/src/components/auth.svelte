@@ -1,7 +1,7 @@
 <script lang="ts">
   import { writable } from 'svelte/store';
   import { createAuthClient } from '@remark42/api/clients/auth';
-  import { user } from '../stores/user';
+  import { user } from '../stores/user.svelte';
 
   const authClient = createAuthClient({ siteId: 'remark42', baseUrl: 'https://demo.remark42.com' });
   const username = writable('');

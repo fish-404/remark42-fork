@@ -1,14 +1,12 @@
 <script lang="ts">
-  import User from '../components/user.svelte';
-  import { user, loading, loadUser } from '../stores/user';
+	import User from '../components/user.svelte'
+	import { publiApi } from '../lib/api'
 
-  loadUser();
+	let user = publiApi.getUser()
 </script>
 
-{#if $loading}
-  <p>Loading...</p>
-{:else if $user !== null}
-  <User {...$user} />
-{:else}
-  unauthorized
-{/if}
+{#await user}
+	<div>Loading...</div>
+{:then $user}
+	<User {...$user} />
+{/await}
